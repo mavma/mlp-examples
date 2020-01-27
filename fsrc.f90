@@ -1,30 +1,42 @@
 ! adapted from http://fortranwiki.org/fortran/show/c_f_procpointer
 
-module use_fptr
+module typing
     use iso_c_binding
     implicit none
 
     interface
-        subroutine func(a)
-            import :: c_float
-            real(c_float), intent(in) :: a
+        subroutine iprintmyintbyval(myint)
+            import :: c_int
+            integer(c_int), value :: myint
+        end subroutine
+        subroutine iprintmyintbyref(myint)
+            import :: c_int
+            integer(c_int) :: myint
         end subroutine
     end interface
 
-    procedure(func), pointer :: myCFunc
-
 contains
-    subroutine setFunc(f) bind(c, name="setFunc")
+    subroutine callbyval() bind(C)
         use iso_c_binding
-        type(c_funptr), value :: f
+        integer :: myint
 
-        call c_f_procpointer(f, myCFunc)
-    end subroutine setFunc
+        procedure(iprintmyintbyval) :: printmyintbyval
 
-    subroutine callFunc() bind(c, name='callFunc')
-        real(c_float) :: a
-        a = 3.0
-        call myCFunc(a)
-        call myCFunc(3.0) ! outputs 0, why?
-    end subroutine callFunc
-end module use_fptr
+        myint = 42
+        call printmyintbyval(myint)
+        call printmyintbyval(myint)
+        call printmyintbyval(myint)
+    end subroutine callbyval
+
+    subroutine callbyref() bind(C)
+        use iso_c_binding
+        integer :: myint
+
+        procedure(iprintmyintbyref) :: printmyintbyref
+
+        myint = 42
+        call printmyintbyref(myint)
+        call printmyintbyref(myint)
+        call printmyintbyref(myint)
+    end subroutine callbyref
+end module typing

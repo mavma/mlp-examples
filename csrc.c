@@ -1,15 +1,18 @@
 #include <stdio.h>
 
-void myfunc(float a) {
-    printf("Called with float %f\n", a);
+void printmyintbyval_(int myint) {
+    printf("Print my int by value = %d\n", myint);
 }
 
-void setFunc(void* f);
-void callFunc();
+void printmyintbyref_(int* myint) {
+    printf("Print my int by reference = %d\n", *myint);
+}
+
+void callbyval();
+void callbyref();
 
 int main( int argc, const char* argv[] )
 {
-    void* f = (void*) &myfunc;
-    setFunc(f);
-    callFunc();
+    callbyval();
+    callbyref();
 }
