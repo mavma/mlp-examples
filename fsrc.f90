@@ -5,13 +5,13 @@ module typing
     implicit none
 
     interface
-        subroutine iprintmyintbyval(myint)
+        subroutine printmyintbyval(myint) bind(C)
             import :: c_int
-            integer(c_int), value :: myint
+            integer(c_int), value, intent(in) :: myint
         end subroutine
-        subroutine iprintmyintbyref(myint)
+        subroutine printmyintbyref(myint) bind(C)
             import :: c_int
-            integer(c_int) :: myint
+            integer(c_int), intent(in) :: myint
         end subroutine
     end interface
 
@@ -19,8 +19,6 @@ contains
     subroutine callbyval() bind(C)
         use iso_c_binding
         integer :: myint
-
-        procedure(iprintmyintbyval) :: printmyintbyval
 
         myint = 42
         call printmyintbyval(myint)
@@ -31,8 +29,6 @@ contains
     subroutine callbyref() bind(C)
         use iso_c_binding
         integer :: myint
-
-        procedure(iprintmyintbyref) :: printmyintbyref
 
         myint = 42
         call printmyintbyref(myint)

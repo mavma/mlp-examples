@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-void printmyintbyval_(int myint) {
+void printmyintbyval(int myint) {
     printf("Print my int by value = %d\n", myint);
 }
 
-void printmyintbyref_(int* myint) {
+void printmyintbyref(int* myint) {
     printf("Print my int by reference = %d\n", *myint);
 }
 
