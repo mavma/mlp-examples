@@ -7,11 +7,11 @@ module typing
     interface
         subroutine printmyintbyval(myint) bind(C)
             import :: c_int
-            integer(c_int), value, intent(in) :: myint
+            integer(c_int), value :: myint
         end subroutine
         subroutine printmyintbyref(myint) bind(C)
             import :: c_int
-            integer(c_int), intent(in) :: myint
+            integer(c_int) :: myint
         end subroutine
     end interface
 
