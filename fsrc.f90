@@ -1,38 +1,14 @@
-! adapted from http://fortranwiki.org/fortran/show/c_f_procpointer
-
-module typing
-    use iso_c_binding
+program call_c_function
     implicit none
 
     interface
-        subroutine printmyintbyval(myint) bind(C)
-            import :: c_int
-            integer(c_int), value :: myint
-        end subroutine
-        subroutine printmyintbyref(myint) bind(C)
-            import :: c_int
-            integer(c_int) :: myint
-        end subroutine
+        function c_add(x, y) result(sum)
+            integer(kind=4) :: x, y, sum
+        end function
     end interface
 
-contains
-    subroutine callbyval() bind(C)
-        use iso_c_binding
-        integer :: myint
-
-        myint = 42
-        call printmyintbyval(myint)
-        call printmyintbyval(myint)
-        call printmyintbyval(myint)
-    end subroutine callbyval
-
-    subroutine callbyref() bind(C)
-        use iso_c_binding
-        integer :: myint
-
-        myint = 42
-        call printmyintbyref(myint)
-        call printmyintbyref(myint)
-        call printmyintbyref(myint)
-    end subroutine callbyref
-end module typing
+    integer(kind=4) :: x, y
+    x = 2
+    y = 3
+    print*,"Sum of ",x," and ",y," is ",c_add(x,y)
+end program call_c_function
