@@ -1,15 +1,17 @@
+subroutine fortran_subroutine(cstr)
+    character(len=8) :: cstr
+    print*, "Fortran: ", cstr
+end subroutine
+
 program interop
-    implicit none
     interface
-        subroutine c_function(f_str)
-            character(len=*) :: f_str
+        subroutine c_function(fstr)
+            character(len=8) :: fstr
         end subroutine
     end interface
-    call c_function("More than 8 characters!")
-    call fortran_subroutine("abc")
+    character(len=*), parameter :: str = "More than 8 characters!"
+    call c_function(str)
+    ! Output:
+    !  C: More than 8 characters!
+    !  Fortran: More tha
 end program
-
-subroutine fortran_subroutine(c_str)
-    character(len=8) :: c_str
-    print*, c_str
-end subroutine

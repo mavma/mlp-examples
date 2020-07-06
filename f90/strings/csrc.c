@@ -1,9 +1,8 @@
-void fortran_subroutine_(char* c_str, int len);
+void fortran_subroutine_(char* cstr, int len);
 
-void c_function_(char* f_str, int len) {
-    // convert Fortran string to C
-    char c_str[len+1];
-    memcpy(c_str, f_str, len);
-    printf("%s\n", c_str);
-    fortran_subroutine_(c_str, len);
+void c_function_(char* fstr, int len) {
+    char cstr[len+1];
+    memcpy(cstr, fstr, len);
+    printf(" C: %s\n", cstr);
+    fortran_subroutine_(cstr, strlen(cstr));
 }
