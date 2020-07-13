@@ -1,0 +1,10 @@
+gfortran  -flto -std=f2003 fsrc.f90.o csrc.c.o  -o output
+csrc.c:1:6: warning: type of ‘interop1’ does not match original declarat
+ion [-Wlto-type-mismatch]
+    1 | void interop1(float* x);
+      |      ^
+fsrc.f90:4: note: ‘interop1’ was previously declared here
+    4 |     subroutine interop1(x) bind(C)
+      |
+fsrc.f90:4: note: code may be misoptimized unless ‘-fno-strict-aliasing’
+ is used
