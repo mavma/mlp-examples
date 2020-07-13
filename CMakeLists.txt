@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 project(mlp_examples)
 
-set(CMAKE_C_STANDARD 11)
-enable_language(Fortran)
-
-set(CMAKE_C_FLAGS "-O0")
-
 add_subdirectory(f90)
 add_subdirectory(f03)
+add_subdirectory(misc/lto)
+add_subdirectory(misc/funptr_interop)
+add_subdirectory(misc/derived_type_interfaces)
+add_subdirectory(misc/test)
