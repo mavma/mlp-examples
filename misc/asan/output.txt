@@ -1,0 +1,10 @@
+==481770==ERROR: AddressSanitizer: global-buffer-overflow on address ...
+READ of size 40 at 0x55d803bff1e4 thread T0
+    #0 0x7f68fa5122a5 in __interceptor_memcpy ...
+    #1 0x55d803bfc19c in set_i .../fsrc.f90:7
+    #2 0x55d803bfc1f2 in main .../csrc.c:5
+    #3 0x7f68f9ec7001 in __libc_start_main (/usr/lib/libc.so.6+0x27001)
+    #4 0x55d803bfc0ad in _start (.../asan+0x10ad)
+
+0x55d803bff1e4 is located 0 bytes to the right of global variable 'array'
+ defined in '.../csrc.c:3:5' (0x55d803bff1c0) of size 36
