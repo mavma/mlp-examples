@@ -7,7 +7,7 @@ void call_normal() {
 void call_get() {
     FP my_p = get_p();
 //    printf("%d \n", my_p());
-    printf("%d \n", (double(*)(double)) my_p());
+    printf("%d \n", my_p());
 }
 
 void call_global() {
