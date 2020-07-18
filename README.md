@@ -1,6 +1,6 @@
-# mlp_examples
+# Multi-language programming examples
 
-Examples of multi-language programming using C and Fortran, appearing [here](https://github.com/mavma/cpfasst-thesis).
+Examples of multi-language programming using C and Fortran, written for my [thesis](https://github.com/mavma/cpfasst-thesis).
 
 Requirements:
 * CMake
